@@ -4,16 +4,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace ConroleDeEstoque.Controllers
+namespace ControleDeEstoque.Controllers
 {
     public class RelatorioController : Controller
     {
         // GET: Relatorio
+        [Authorize]
         public ActionResult PosicaoEstoque()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult Ressuprimento()
         {
             return View();

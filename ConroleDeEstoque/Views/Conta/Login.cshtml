@@ -1,0 +1,69 @@
+﻿@*vincula essa view ao model loginviewmodel*@
+@model ControleDeEstoque.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div class="container-login">
+    <div class="row">
+        <h3 class="titulo">Acessar o Sistema</h3>
+    </div>
+
+    <div class="row">
+
+        <section id="loginForm">
+            @*metodo ou action Login do controller Conta*@
+            @using (Html.BeginForm("Login", "Conta", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "Form-horizontal", hole = "Form" }))
+            {
+                @*validação menssagem*@
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Usuario, new { @class = "form-label col-md-2" })
+
+
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Usuario, new { @class = "form-control" })
+                        @*validação menssagem*@
+                        @Html.ValidationMessageFor(m => m.Usuario, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Senha, new { @class = "form-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
+                        @*validaçãomenssagem*@
+                        @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        @Html.CheckBoxFor(m => m.LembrarMe)
+                        @Html.LabelFor(m => m.LembrarMe)
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <input type="submit" class="btn btn-success" value="Entrar" />
+                    </div>
+                </div>
+
+
+            }
+
+        </section>
+
+    </div>
+
+</div>
+
+
+@*script jquery para validação*@
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
