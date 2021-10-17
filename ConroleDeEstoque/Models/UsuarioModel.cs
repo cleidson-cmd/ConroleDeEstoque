@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using MySql.Data.MySqlClient;
 
 namespace ConroleDeEstoque.Models
 {
@@ -13,16 +14,16 @@ namespace ConroleDeEstoque.Models
             #region Conecxao com banco de dados
             var ret = false;
 
-            using (var conexao = new SqlConnection())
+            using (MySqlConnection conexao = new MySqlConnection())
             {
                 conexao.ConnectionString = @"server=localhost;user id=Admin; Password=123;database=controde_estoque";
                 conexao.Open();
 
-                using (var comando = new SqlCommand())
+                using (MySqlCommand comando = new MySqlCommand())
                 {
                     comando.Connection = conexao;
-                    comando.CommandText = string.Format("select count(*) from Usuario where Login = '{0}' and Senha = '{1}'", login, senha);
-                    ret = ((int)comando.ExecuteScalar() > 0);
+                    comando.CommandText = string.Format("select count(*) from usuario where Login = '{0}' and Senha = '{1}'", login, senha);
+                    ret = (Convert.ToInt32(comando.ExecuteScalar()) > 0);
                 }
             }
             return ret;
