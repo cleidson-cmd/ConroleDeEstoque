@@ -1,7 +1,63 @@
-﻿
-@{
-    ViewBag.Title = "GrupoProduto";
+﻿@model List<ControleDeEstoque.Models.GrupoProdutoModel>
+
+@{ 
+    ViewBag.Title = "Cadastro de grupo do Produto";
 }
 
-<h2>GrupoProduto</h2>
+<div id="cadastro">
 
+    <section id="cadastro_cabecalho">
+
+        <h1>@ViewBag.title</h1>
+    </section>
+
+    <section id="cadastro_conteudo">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box">
+                    <div id="cabecalho_grid" class="row">
+                        <div class="col-md-12">
+                            <a id="btn_incluir" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus">Incluir</i> </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <table id="grid_cadastro" class="tabble table-bordered table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nome</th>
+                                        <th>Ativo</th>
+                                        <th>Ação</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @*usando razor o foreach vai do indice item ate model, ele ja reconhece o model que esta sendo referenciado acima*@
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            @*acessando os itens do model*@
+                                            <td>@item.Nome</td>
+                                            <td>@{var ativo = (item.Ativo ? "SIm" : "NÃO");} @ativo</td>
+                                            <td>
+                                                <a class="btn btn-primary btn-alterar" role="button"> <i class="glyphicon glyphicon-pencil">Alterar</i></a>
+
+                                                <a class="btn btn-danger btn-excluir" role="button"> <i class="glyphicon glyphicon-trash">Excluir</i></a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+</div>
