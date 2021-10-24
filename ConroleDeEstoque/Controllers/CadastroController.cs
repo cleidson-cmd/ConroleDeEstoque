@@ -1,4 +1,5 @@
 ﻿using ControleDeEstoque.Models;
+using Nest;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,14 @@ namespace ControleDeEstoque.Controllers
     {
 
         private static List<GrupoProdutoModel> _listagrupoProduto = new List<GrupoProdutoModel>(){
-            new List<GrupoProdutoModel>() {Id=1, Nome="mouse", Ativo=true},
-            new List<GrupoProdutoModel>() {Id=2, Nome="livro", Ativo=true },
-            new List<GrupoProdutoModel>() {Id=3, Nome="teclado", Ativo=true}
+            new GrupoProdutoModel() {Id=1, Nome="mouse", Ativo=true},
+            new GrupoProdutoModel() {Id=2, Nome="livro", Ativo=false },
+            new GrupoProdutoModel() {Id=3, Nome="teclado", Ativo=true }
         };
 
 
-        // GET: Cadastro
-        //Authorize só quem tem permissão pode acessar
+// GET: Cadastro
+//Authorize só quem tem permissão pode acessar
         [Authorize]
         public ActionResult GrupoProduto()
         {

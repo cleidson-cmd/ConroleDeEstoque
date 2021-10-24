@@ -1,8 +1,35 @@
 ﻿@model List<ControleDeEstoque.Models.GrupoProdutoModel>
 
-@{ 
+@{
     ViewBag.Title = "Cadastro de grupo do Produto";
 }
+
+<style>
+    #grid_cadastro > thead > tr th:nth-child(1) {
+        width: 400px;
+    }
+
+    #grid_cadastro > thead > tr th:nth-child(2) {
+        width: 110px;
+    }
+
+    #cadastro {
+        width: 70%;
+        margin: 0 auto;
+    }
+
+    #cadastro_cabecalho {
+        border-bottom: 1px #dddddd solid;
+    }
+
+    #cadastro_conteudo {
+        margin-top: 20px;
+    }
+
+    #cabecalho_grid {
+        margin-bottom: 20px;
+    }
+</style>
 
 <div id="cadastro">
 
@@ -12,52 +39,62 @@
     </section>
 
     <section id="cadastro_conteudo">
+
+        <div id="cabecalho_grid" class="row">
+            <div class="col-md-12">
+                <a id="btn_incluir" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus">Incluir</i> </a>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="box">
-                    <div id="cabecalho_grid" class="row">
-                        <div class="col-md-12">
-                            <a id="btn_incluir" class="btn btn-success" role="button"><i class="glyphicon glyphicon-plus">Incluir</i> </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <table id="grid_cadastro" class="tabble table-bordered table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Nome</th>
-                                        <th>Ativo</th>
-                                        <th>Ação</th>
-                                    </tr>
-                                </thead>
+                <table id="grid_cadastro" class="tabble table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Ativo</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
 
-                                <tbody>
-                                    @*usando razor o foreach vai do indice item ate model, ele ja reconhece o model que esta sendo referenciado acima*@
-                                    @foreach (var item in Model)
-                                    {
-                                        <tr>
-                                            @*acessando os itens do model*@
-                                            <td>@item.Nome</td>
-                                            <td>@{var ativo = (item.Ativo ? "SIm" : "NÃO");} @ativo</td>
-                                            <td>
-                                                <a class="btn btn-primary btn-alterar" role="button"> <i class="glyphicon glyphicon-pencil">Alterar</i></a>
+                    <tbody>
+                        @*usando razor o foreach vai do indice item ate model, ele ja reconhece o model que esta sendo referenciado acima*@
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @*acessando os itens do model*@
+                                <td>@item.Nome</td>
+                                <td>@{var ativo = (item.Ativo ? "SIm" : "NÃO");}@ativo</td>
+                                <td>
+                                    <a class="btn btn-primary btn-alterar" role="button"> <i class="glyphicon glyphicon-pencil">Alterar</i></a>
 
-                                                <a class="btn btn-danger btn-excluir" role="button"> <i class="glyphicon glyphicon-trash">Excluir</i></a>
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
+                                    <a class="btn btn-danger btn-excluir" role="button"> <i class="glyphicon glyphicon-trash">Excluir</i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
-                            </table>
-                        </div>
-
-                    </div>
-
-
-                </div>
+                </table>
             </div>
 
         </div>
+
+
     </section>
 
 </div>
+
+
+<script>
+
+    $(document).on('click', '#btn_incluir', function () {
+        alert('incluir');
+    })
+    .on('click', '.btn-alterar', function () {
+        alert('alterar');
+    })
+    .on('click', '.btn-excluir', function () {
+        alert(excluir);
+    })
+
+</script>
+
